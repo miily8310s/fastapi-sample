@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Path, Query
+from pydantic import BaseModel
 from typing import Optional
 app = FastAPI()
 
@@ -26,3 +27,21 @@ async def getParameter(
     return {"sample_text":"bbb, 2 default is test"}
   '''
   return {"sample_text": f"{path}, {query} default is {default_none}"}
+
+## Pathはparams、Queryはqueryに指定する
+@app.get('/items/{item_id}')
+async def getItem(
+    *,
+    item_id: int = Path(..., title='id of the item to get', gt=1, lt=10), # 必須 / 1 < 値 < 10
+    q: float = Query(3, ge=3, le=555)  # 必須 / 3 <= 値 <= 555
+  ):
+  return {"valid_parameters": f"{item_id}, {q}"}
+
+# POSTメソッド
+class DataModel(BaseModel):
+  name: str
+  option: Optional[str] = None
+
+@app.post('/setname')
+async def set_name(data: DataModel):
+  return {"data": f"Name is {data.name}, {data.option}"}
