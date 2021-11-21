@@ -1,6 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import axios from "axios";
+
+const Hello = () => {
+  const [message, setMessage] = useState("");
+  useEffect(() => {
+    const fetchMethod = () => {
+      axios.get("http://localhost:8000/").then((response) => {
+        const data = response.data;
+        setMessage(data.message);
+      });
+    };
+    fetchMethod();
+  }, []);
+  return <div>{message}</div>;
+};
 
 function App() {
   return (
@@ -17,6 +32,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+          <Hello />
         </a>
       </header>
     </div>
