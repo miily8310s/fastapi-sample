@@ -24,7 +24,7 @@ async def getParameter(
   '''
   ex) \n
     /parameter/aaa/?query=1
-    return {"sample_text":"aaa, 1 default is None"} \n
+    return {"sample_text":"aaa, 1 default is None"} \n　
     /parameter/bbb?query=2&default_none=test
     return {"sample_text":"bbb, 2 default is test"}
   '''
@@ -35,7 +35,7 @@ async def getParameter(
 async def getItem(
     *,
     item_id: int = Path(..., title='id of the item to get', gt=1, lt=10), # 必須 / 1 < 値 < 10
-    q: float = Query(3, ge=3, le=555)  # 必須 / 3 <= 値 <= 555
+    q: float = Query(3, ge=3, le=555)  # Not必須 / 3 <= 値 <= 555
   ):
   return {"valid_parameters": f"{item_id}, {q}"}
 
