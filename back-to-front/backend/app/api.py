@@ -1,17 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
+from . import models, schemas
+from .database import engine, SessionLocal
 
-todo = [
-    {
-        "id": "1",
-        "item": "Read a book."
-    },
-    {
-        "id": "2",
-        "item": "Cycle around town."
-    }
-]
-
+models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 origins = [
@@ -27,6 +20,21 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
 @app.get('/')
 async def read_root():
     return {'message': 'Hello World!'}
+
+@app.post('/post-article')
+def create_article(request: schemas.Article, db: Session = Depends(get_db)):
+    new_article = models.Article(title=request.title, body=request.body)
+    db.add(new_article)
+    db.commit()
+    db.refresh(new_article)
+    return new_article
