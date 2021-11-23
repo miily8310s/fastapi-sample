@@ -1,6 +1,9 @@
+import { ReactElement } from "react";
+
 interface TableColumn<DataType> {
   title: string;
   field: keyof DataType;
+  Cell?({ entry }: { entry: DataType }): ReactElement;
 }
 
 interface TableProps<DataType> {
@@ -32,8 +35,10 @@ export const Table = <DataType extends { id: number }>({
         <tbody>
           {data.map((entry, entryIndex) => (
             <tr key={`${entry.id}_${entryIndex}`}>
-              {columns.map(({ title, field }, columnIndex) => (
-                <td key={`${title}_${columnIndex}`}>{entry[field]}</td>
+              {columns.map(({ Cell, title, field }, columnIndex) => (
+                <td key={`${title}_${columnIndex}`}>
+                  {Cell ? <Cell entry={entry} /> : entry[field]}
+                </td>
               ))}
             </tr>
           ))}

@@ -2,12 +2,13 @@ import { Sample } from "features/sample/components/Sample";
 import { Navigate, Outlet } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
 import { ArticlesRoutes } from "features/articles/routes";
+import { MainLayout } from "components/Layout";
 
 const AppSample = () => {
   return (
-    <div>
+    <MainLayout>
       <Outlet />
-    </div>
+    </MainLayout>
   );
 };
 
