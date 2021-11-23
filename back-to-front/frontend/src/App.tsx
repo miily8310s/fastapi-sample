@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AppRoutes } from "routes";
 import { Button } from "components/Elements/Button";
+import { HelmetProvider } from "react-helmet-async";
 
 const client = new QueryClient();
 const ErrorFallback = () => {
@@ -18,12 +19,14 @@ const ErrorFallback = () => {
 function App() {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <QueryClientProvider client={client}>
-        <ReactQueryDevtools />
-        <Router>
-          <AppRoutes />
-        </Router>
-      </QueryClientProvider>
+      <HelmetProvider>
+        <QueryClientProvider client={client}>
+          <ReactQueryDevtools />
+          <Router>
+            <AppRoutes />
+          </Router>
+        </QueryClientProvider>
+      </HelmetProvider>
     </ErrorBoundary>
   );
 }

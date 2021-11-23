@@ -1,3 +1,4 @@
+import { Header } from "components/Header";
 import { ReactNode } from "react";
 
 interface ContentLayoutProps {
@@ -8,7 +9,7 @@ interface ContentLayoutProps {
 export const ContentLayout = ({ children, title }: ContentLayoutProps) => {
   return (
     <>
-      {/* <header></header> */}
+      <Header title={title} />
       <div>
         <div>
           <h1>{title}</h1>

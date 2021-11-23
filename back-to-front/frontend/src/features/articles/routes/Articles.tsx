@@ -1,4 +1,4 @@
-import { ContentLayout } from "components/Elements/Layout";
+import { ContentLayout } from "components/Layout";
 import { ArticleList } from "../components/ArticleList";
 
 export const Articles = () => {
