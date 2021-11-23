@@ -1,7 +1,7 @@
-import { ArticleList } from "features/articles/components/ArticleList";
 import { Sample } from "features/sample/components/Sample";
 import { Navigate, Outlet } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
+import { ArticlesRoutes } from "features/articles/routes";
 
 const AppSample = () => {
   return (
@@ -19,7 +19,7 @@ export const publicRoutes: RouteObject[] = [
       { path: "/", element: <Sample /> },
       {
         path: "/articles",
-        element: <ArticleList />,
+        element: <ArticlesRoutes />,
       },
       { path: "*", element: <Navigate to="." /> },
     ],
