@@ -39,6 +39,24 @@ def create_article(request: schemas.Article, db: Session = Depends(get_db)):
     db.refresh(new_article)
     return new_article
 
+@app.delete('/delete-article/{id}')
+def delete_article(id: int, db: Session = Depends(get_db)):
+    article = db.query(models.Article).filter(models.Article.id == id)
+    if not article.first():
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Article with the id {id} is not found')
+    article.delete(synchronize_session=False)
+    db.commit()
+    return 'done'
+
+@app.put('/update-article/{id}')
+def update_article(id: int, request: schemas.Article, db: Session = Depends(get_db)):
+    article = db.query(models.Article).filter(models.Article.id == id)
+    if not article.first():
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Article with the id {id} is not found')
+    article.update(request.__dict__)
+    db.commit()
+    return 'updated'
+
 @app.get('/get-all-articles')
 def get_all_articles(db: Session = Depends(get_db)):
     articles = db.query(models.Article).all()
