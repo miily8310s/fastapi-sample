@@ -19,7 +19,7 @@ export const publicRoutes: RouteObject[] = [
     children: [
       { path: "/", element: <Sample /> },
       {
-        path: "/articles",
+        path: "/articles/*",
         element: <ArticlesRoutes />,
       },
       { path: "*", element: <Navigate to="." /> },
