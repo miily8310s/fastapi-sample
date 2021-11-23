@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import { useArticles } from "../api/getArticles";
 
 export const ArticleList = () => {
@@ -10,6 +11,7 @@ export const ArticleList = () => {
   }
   return (
     <div>
+      <Outlet />
       {data.map((article) => (
         <div key={`${article.id}_${article.title}`}>
           <p>{article.id}</p>

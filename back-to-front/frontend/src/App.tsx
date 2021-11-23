@@ -1,8 +1,7 @@
 import { QueryClientProvider, QueryClient } from "react-query";
-import { Sample } from "./features/sample/components/Sample";
-import { ArticleList } from "./features/articles/components/ArticleList";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import { AppRoutes } from "routes";
 
 const client = new QueryClient();
 
@@ -11,14 +10,7 @@ function App() {
     <QueryClientProvider client={client}>
       <ReactQueryDevtools />
       <Router>
-        <Routes>
-          <Route path="/" element={<ArticleList />}>
-            {/* <Route path="article">
-            <Route path=":articleId" element={<Team />} />
-          </Route> */}
-          </Route>
-          <Route path="*" element={<Sample />} />
-        </Routes>
+        <AppRoutes />
       </Router>
     </QueryClientProvider>
   );
