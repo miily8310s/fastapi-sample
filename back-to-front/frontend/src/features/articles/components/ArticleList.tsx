@@ -1,5 +1,6 @@
-import { Outlet } from "react-router-dom";
+import { Table } from "components/Elements/Table";
 import { useArticles } from "../api/getArticles";
+import { Article } from "features/articles/";
 
 export const ArticleList = () => {
   const { isLoading, data } = useArticles();
@@ -9,16 +10,15 @@ export const ArticleList = () => {
   if (!data) {
     return <p>Not Data</p>;
   }
+  // TODO: 詳細リンクと編集、削除ボタンの追加
   return (
-    <div>
-      <Outlet />
-      {data.map((article) => (
-        <div key={`${article.id}_${article.title}`}>
-          <p>{article.id}</p>
-          <p>{article.title}</p>
-          <p>{article.body}</p>
-        </div>
-      ))}
-    </div>
+    <Table<Article>
+      data={data}
+      columns={[
+        { title: "id", field: "id" },
+        { title: "タイトル", field: "title" },
+        { title: "内容", field: "body" },
+      ]}
+    />
   );
 };
