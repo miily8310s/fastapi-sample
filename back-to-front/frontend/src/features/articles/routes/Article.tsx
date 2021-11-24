@@ -10,7 +10,6 @@ export const Article = () => {
   }
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const articleQuery = useArticle({ articleId });
-  console.log(articleQuery);
 
   if (articleQuery.isLoading) {
     return <div>Loading...</div>;

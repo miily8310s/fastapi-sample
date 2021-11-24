@@ -11,7 +11,7 @@ interface TableProps<DataType> {
   columns: TableColumn<DataType>[];
 }
 
-export const Table = <DataType extends { id: number }>({
+export const Table = <DataType extends { id: string }>({
   data,
   columns,
 }: TableProps<DataType>) => {
