@@ -55,7 +55,8 @@ def update_article(id: int, request: schemas.Article, db: Session = Depends(get_
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Article with the id {id} is not found')
     article.update(request.__dict__)
     db.commit()
-    return 'updated'
+    db.refresh(article)
+    return article
 
 @app.get('/get-all-articles')
 def get_all_articles(db: Session = Depends(get_db)):

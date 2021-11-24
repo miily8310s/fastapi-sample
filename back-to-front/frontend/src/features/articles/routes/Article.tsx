@@ -1,7 +1,7 @@
 import { ContentLayout } from "components/Layout";
 import { UpdateArticle } from "../components/UpdateArticle";
 import { useParams } from "react-router-dom";
-import { useArticle } from "../api/getArticle";
+// import { useArticle } from "../api/getArticle";
 
 export const Article = () => {
   const { articleId } = useParams<"articleId">();
@@ -9,21 +9,21 @@ export const Article = () => {
     return <div>不正なデータです</div>;
   }
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const articleQuery = useArticle({ articleId });
+  // const articleQuery = useArticle({ articleId });
 
-  if (articleQuery.isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (articleQuery.isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
-    <ContentLayout
-      title={`${articleQuery.data!.id}: ${articleQuery.data!.title}`}
-    >
+    // <ContentLayout title={`記事ID: ${articleQuery.data!.id}`}>
+    //   <div>
+    //     <UpdateArticle articleId={articleQuery.data!.id} />
+    //   </div>
+    // </ContentLayout>
+    <ContentLayout title={`記事ID: ${articleId}`}>
       <div>
-        <UpdateArticle
-          title={articleQuery.data!.title}
-          body={articleQuery.data!.body}
-        />
+        <UpdateArticle articleId={articleId} />
       </div>
     </ContentLayout>
   );
