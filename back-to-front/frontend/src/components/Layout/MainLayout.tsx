@@ -3,16 +3,16 @@ import { NavLink } from "react-router-dom";
 import { ReactNode } from "react";
 import logo from "logo.svg";
 
-const Logo = () => {
+const Logo = ({ className }: { className: string }) => {
   return (
-    <Link to=".">
-      <img style={{ height: "2rem" }} src={logo} alt="ReactLogo" />
-      <span>サンプルページ</span>
+    <Link to="." className={className}>
+      <img src={logo} alt="ReactLogo" />
+      <p>サンプルページ</p>
     </Link>
   );
 };
 
-const SideNavigation = () => {
+const SideNavigation = ({ className }: { className: string }) => {
   const navigation = [
     { name: "ホーム", to: "." },
     { name: "記事", to: "./articles" },
@@ -21,7 +21,7 @@ const SideNavigation = () => {
     <>
       {navigation.map((item, index) => (
         <NavLink key={item.name} end={index === 0} to={item.to}>
-          {item.name}
+          <div className={className}>{item.name}</div>
         </NavLink>
       ))}
     </>
@@ -30,15 +30,11 @@ const SideNavigation = () => {
 
 const Sidebar = () => {
   return (
-    <div>
-      <div>
-        <Logo />
-      </div>
-      <div>
-        <nav>
-          <SideNavigation />
-        </nav>
-      </div>
+    <div className="Sidebar">
+      <Logo className="Sidebar_logo" />
+      <nav className="Sidebar_nav">
+        <SideNavigation className="Sidebar_navLink" />
+      </nav>
     </div>
   );
 };
@@ -49,9 +45,9 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <div>
+    <div className="MainLayout">
       <Sidebar />
-      <div>{children}</div>
+      <div className="MainLayout_children">{children}</div>
     </div>
   );
 };

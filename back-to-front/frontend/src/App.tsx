@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AppRoutes } from "routes";
 import { Button } from "components/Elements/Button";
 import { HelmetProvider } from "react-helmet-async";
+import "App.scss";
 
 const client = new QueryClient();
 const ErrorFallback = () => {

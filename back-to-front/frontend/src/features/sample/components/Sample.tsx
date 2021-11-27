@@ -8,5 +8,14 @@ export const Sample = () => {
   if (!data) {
     return <p>Not Data</p>;
   }
-  return <div>{data.message}</div>;
+  return (
+    <>
+      <h1>{data.message}</h1>
+      <p>このアプリでは次のことができます</p>
+      <ul>
+        <li>記事一覧の確認</li>
+        <li>記事の追加・編集・削除</li>
+      </ul>
+    </>
+  );
 };

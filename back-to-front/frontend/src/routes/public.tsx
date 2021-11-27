@@ -7,6 +7,7 @@ import { MainLayout } from "components/Layout";
 const AppSample = () => {
   return (
     <MainLayout>
+      <div className="Header" />
       <Outlet />
     </MainLayout>
   );

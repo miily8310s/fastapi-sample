@@ -1,0 +1,65 @@
+@import "~sanitize.css";
+@import "~sanitize.css/forms.css";
+@import "~sanitize.css/typography.css";
+
+:root {
+  height: 100%;
+}
+h1,
+p,
+ul {
+  margin: 0 !important;
+}
+
+.MainLayout {
+  display: flex;
+  text-decoration: none;
+}
+
+.MainLayout_children {
+  margin-left: 1rem;
+}
+
+.Sidebar {
+}
+
+.Sidebar_logo {
+  display: flex;
+  align-items: center;
+  background: #1f1d36;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  img {
+    height: 2rem;
+  }
+  p {
+    font-weight: 400;
+    font-size: 18px;
+  }
+}
+
+.Sidebar_nav {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  background: #3f3351;
+  height: 850px;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.Sidebar_navLink {
+  background: #1f1d36;
+  padding: 0.5rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.8rem;
+}
+
+.Header {
+  height: 48px;
+}
